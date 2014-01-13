@@ -1,0 +1,10 @@
+extends ../layout.jade
+
+block main
+	h1 Enter a Valid Youtube Link
+
+	form(method='post')
+		label(for='inputUrl')
+		.form-group
+			input(type='text', name='ytUrl', placeholder='Youtube Link')#inputUrl
+		button(type='submit').btn.btn-primary.btn-lg Submit

@@ -1,0 +1,13 @@
+extends ../layout.jade
+
+block main
+	h1#title
+
+	button#playpause.btn.btn-default.btn-lg 
+		span.glyphicon.glyphicon-pause
+	button#stop.btn.btn-default.btn-lg
+		span.glyphicon.glyphicon-stop
+block scripts
+	script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+	script(src='/socket.io/socket.io.js')
+	script(src='/javascripts/script.js')
