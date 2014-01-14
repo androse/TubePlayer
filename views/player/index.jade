@@ -3,8 +3,15 @@ extends ../layout.jade
 block main
 	h1 Enter a Valid Youtube Link
 
-	form(method='post')
-		label(for='inputUrl')
-		.form-group
-			input(type='text', name='ytUrl', placeholder='Youtube Link')#inputUrl
-		button(type='submit').btn.btn-primary.btn-lg Submit
+	.playing
+		h2#title
+		img#thumbnail
+	.controls
+		button#playpausebtn
+		button#stopbtn
+		button#nextbtn
+	.new
+		input(type='text' placeholder='YouTube Video Link')#yturltxt
+		button#yturlbtn
+	.list-group
+		a
