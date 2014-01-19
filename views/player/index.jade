@@ -1,17 +1,20 @@
 extends ../layout.jade
 
 block main
-	h1 Enter a Valid Youtube Link
-
-	.playing
+	.playing.container
 		h2#title
 		img#thumbnail
-	.controls
-		button#playpausebtn
-		button#stopbtn
-		button#nextbtn
-	.new
-		input(type='text' placeholder='YouTube Video Link')#yturltxt
-		button#yturlbtn
-	.list-group
-		a
+	.controls.container
+		button#playpausebtn.btn.btn-default.btn-lg
+			span.glyphicon.glyphicon-play
+		button#stopbtn.btn.btn-default.btn-lg
+			span.glyphicon.glyphicon-stop
+		button#volumeup.btn.btn-default.btn-lg +
+		button#volumedown.btn.btn-default.btn-lg -
+	.new.container
+		.row
+			.col-sm-8
+				input(type='text' placeholder='YouTube Video Link')#yturltxt.form-control.input-lg
+			.col-sm-4
+				button#yturlbtn.btn.btn-primary.btn-lg.btn-block Submit
+	.list-group.container

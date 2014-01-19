@@ -15,19 +15,17 @@ app.get('/', function(req, res) {
 	res.render('player/index');
 });
 
-app.post('/', function(req, res) {
-	console.log('Post request received');
-
-	player.getInfo(req.body.ytUrl, server, res);
-});
-
 console.log('Listening on port ' + app.get('port'));
 var io = require('socket.io').listen(app.listen(app.get('port')));
 
 io.sockets.on('connection', function(socket) {
+	// Send newly connected client the current list of videos
+	socket.emit('updateall', videos.videoList);
+
 	socket.on('add', function(data) {
+		console.log('New video about to be added!');
 		// Once the video has been added to the list, emit the updated list to all connected
-		video.addVideo(data.yturl, function() {
+		videos.addVideo(data.yturl, function() {
 			io.sockets.emit('updatelist', videos.videoList); // May need to use JSON.stringify(videos.videoList)
 		})
 	});
@@ -42,8 +40,14 @@ io.sockets.on('connection', function(socket) {
 				break;
 			case 'start':
 				player.newVideo(videos.videoList, data.selection, function() {
-					io.sockets.emit('updatePlaying', {update: 'started'});
+					io.sockets.emit('updateall', videos.videoList);
 				});
+				break;
+			case 'volumeup': 
+				player.volumeUp();
+				break;
+			case 'volumedown':
+				player.volumeDown();
 				break;
 			default:
 				console.log('An invalid control was sent by a client!');
