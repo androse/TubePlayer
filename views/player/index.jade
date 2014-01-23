@@ -1,16 +1,16 @@
 extends ../layout.jade
 
 block main
-	.playing.container
-		h2#title
-		img#thumbnail
 	.controls.container
-		button#playpausebtn.btn.btn-default.btn-lg
-			span.glyphicon.glyphicon-play
-		button#stopbtn.btn.btn-default.btn-lg
-			span.glyphicon.glyphicon-stop
-		button#volumeup.btn.btn-default.btn-lg +
-		button#volumedown.btn.btn-default.btn-lg -
+		.btn-group.btn-group-lg
+			button#playpausebtn.btn.btn-default
+				span.glyphicon.glyphicon-play
+			button#stopbtn.btn.btn-default
+				span.glyphicon.glyphicon-stop
+			button#volumeup.btn.btn-default
+				span.glyphicon.glyphicon-volume-up
+			button#volumedown.btn.btn-default
+				span.glyphicon.glyphicon-volume-down
 	.new.container
 		.row
 			.col-sm-8

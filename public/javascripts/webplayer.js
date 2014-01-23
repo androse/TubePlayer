@@ -5,7 +5,7 @@ $(document).ready(function() {
 	// Socket events
 
 	socket.on('updateall', function(data) {
-		updateList(data, updatePlaying);
+		updateList(data);
 	});
 
 	socket.on('updatelist', function(data) {
@@ -32,7 +32,6 @@ $(document).ready(function() {
 
 	$('#stopbtn').click(function() {
 		disableControls();
-		resetPlaying();
 
 		socket.emit('control', {
 			control: 'stop',
@@ -75,7 +74,7 @@ $(document).ready(function() {
 		$('#yturltxt').val('');
 	}
 
-	function updateList(data, callback) {
+	function updateList(data) {
 		var currentVideo = null;
 
 		// Empty the list of videos
@@ -91,39 +90,41 @@ $(document).ready(function() {
 					$('.list-group').append(
 						'<a href="#" id="' + index 
 						+ '" class="list-group-item active">' 
-						+ element.title + '</a>');
+						+ '<div class="row">'
+						+ '<div class="col-xs-2">'
+						+ '<img src="' + element.thumbnail 
+						+ '" alt="' + element.title
+						+ '" class="img-thumbnail">' 
+						+ '</div>'
+						+ '<div class="col-xs-10">'
+						+ '<h4>' + element.title + '</h4>'
+						+ '</div>'
+						+ '</div>'
+						+ '</a>'
+					);
 				} else {
 					$('.list-group').append(
 						'<a href="#" id="' + index
 						+ '" class="list-group-item">' 
-						+ element.title + '</a>');
+						+ '<div class="row">'
+						+ '<div class="col-xs-2">'
+						+ '<img src="' + element.thumbnail 
+						+ '" alt="' + element.title
+						+ '" class="img-thumbnail">' 
+						+ '</div>'
+						+ '<div class="col-xs-10">'
+						+ '<h4>' + element.title + '</h4>'
+						+ '</div>'
+						+ '</div>'
+						+ '</a>'
+					);
 				}
 			});
 
 			if (currentVideo) {
 				enableControls();
-
-				// Optional callback function
-				typeof callback == "function" && callback(currentVideo);
 			}
 		}
-	}
-
-	function updatePlaying(currentVideo) {
-		resetPlaying();		
-
-		// Update the title and image
-		$('.playing #title').text(currentVideo.title);
-		$('.playing #thumbnail').attr({
-			src: currentVideo.thumbnail,
-			alt: currentVideo.title,
-			class: 'img-thumbnail'
-		});
-	}
-
-	function resetPlaying() {
-		$('playing #title').empty();
-		$('playing #thumbnail').removeAttr('src alt class');
 	}
 
 	function enableControls() {

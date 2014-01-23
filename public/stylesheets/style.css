@@ -1,4 +1,17 @@
 .container {
-	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
+.list-group {
+	padding-left: 15px;
+}
+
+.list-group-item .img-thumbnail {
+	width: 75px;
+}
+
+.list-group-item .h4 {
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
