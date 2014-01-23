@@ -122,6 +122,8 @@ $(document).ready(function() {
 
 			if (currentVideo) {
 				enableControls();
+			} else {
+				disableControls();
 			}
 		}
 	}
