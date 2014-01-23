@@ -47,6 +47,8 @@ io.sockets.on('connection', function(socket) {
 			case 'start':
 				player.newVideo(videos.videoList, data.selection, function() {
 					io.sockets.emit('updateall', videos.videoList);
+				}, function() {
+					io.sockets.emit('updateall', videos.videoList);
 				});
 				break;
 			case 'volumeup': 
