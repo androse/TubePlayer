@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	var socket = io.connect('http://10.0.0.10');
-	disableControls();
 
 	// Socket events
 
