@@ -1,7 +1,7 @@
 extends ../layout.jade
 
 block main
-	.controls.container
+	.controls.container.spacer
 		.btn-group.btn-group-lg
 			button(disabled)#playpausebtn.btn.btn-default
 				span.glyphicon.glyphicon-play
@@ -11,10 +11,10 @@ block main
 				span.glyphicon.glyphicon-volume-up
 			button(disabled)#volumedown.btn.btn-default
 				span.glyphicon.glyphicon-volume-down
-	.new.container
+	.new.container.spacer
 		.row
 			.col-sm-8
 				input(type='text' placeholder='YouTube Video Link')#yturltxt.form-control.input-lg
-			.col-sm-4
+			.col-sm-4.spacer
 				button#yturlbtn.btn.btn-primary.btn-lg.btn-block Submit
-	.list-group.container
+	.list-group.container.spacer

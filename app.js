@@ -6,7 +6,7 @@ var express = require('express'),
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
@@ -28,6 +28,12 @@ io.sockets.on('connection', function(socket) {
 		videos.addVideo(data.yturl, function() {
 			io.sockets.emit('updatelist', videos.videoList); // May need to use JSON.stringify(videos.videoList)
 		})
+	});
+
+	socket.on('remove', function(data) {
+		videos.removeVideo(data.selection, function() {
+			io.sockets.emit('updatelist', videos.videoList);
+		});
 	});
 
 	socket.on('control', function(data) {
